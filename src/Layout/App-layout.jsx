@@ -24,7 +24,7 @@ function AppLayout() {
               </main>
 
               {/* Footer */}
-              <footer className="p-10 text-center border-t bg-[#0A0A0A] border-gray-950">
+              <footer className="p-10 text-center border-t  border-gray-950">
                 Made with ❤️ by Anirudha :)
               </footer>
             </div>
