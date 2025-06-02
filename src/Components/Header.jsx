@@ -19,7 +19,7 @@ function Header() {
   const user = true; // Replace with actual user authentication logic
 
   return (
-    <nav className="flex items-center justify-between py-4 px-4 bg-gray-800 text-white">
+    <nav className=" bg-[#0A0A0A] flex items-center justify-between py-3 px-4  text-white">
       <Link to="/">
         <img src="/logo2.png" className="h-24" alt="logo" />
       </Link>
