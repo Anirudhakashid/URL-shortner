@@ -16,7 +16,7 @@ import { LinkIcon, LogOut } from "lucide-react";
 function Header() {
   const navigate = useNavigate();
 
-  const user = true; // Replace with actual user authentication logic
+  const user = false; // Replace with actual user authentication logic
 
   return (
     <nav className="flex items-center justify-between  px-4  text-white">
