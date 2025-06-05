@@ -16,6 +16,7 @@ import Error from "./Error";
 import * as yup from "yup";
 import { login } from "@/utils/apiAuth";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { UrlState } from "@/Context";
 
 function Login() {
   const [errors, setErrors] = useState([]);
@@ -39,10 +40,12 @@ function Login() {
 
   //fetching data from the custom hook
   const { data, loading, error, fn: fnLogin } = useFetch(login, formData);
+  const { fetchUser, user } = UrlState();
 
   useEffect(() => {
     if (error === null && data) {
       navigate(`/dashboard?${longUrl ? `createNew=${longUrl}` : ""}`);
+      fetchUser(); // Fetch the user data after successful login
     }
   }, [data, error]);
 
