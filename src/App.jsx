@@ -14,6 +14,7 @@ import {
   Link,
   RedirectedLink,
 } from "./pages/index";
+import UrlProvider from "./Context";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,7 +33,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
+      <UrlProvider>
+        <RouterProvider router={router} />
+      </UrlProvider>
     </>
   );
 }
