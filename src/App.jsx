@@ -15,14 +15,29 @@ import {
   RedirectedLink,
 } from "./pages/index";
 import UrlProvider from "./Context";
+import RequireAuth from "./Components/RequireAuth";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="" element={<AppLayout />}>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route
+        path="/dashboard"
+        element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        }
+      />
       <Route path="/auth" element={<Authentication />} />
-      <Route path="/link/:id" element={<Link />} />
+      <Route
+        path="/link/:id"
+        element={
+          <RequireAuth>
+            <Link />
+          </RequireAuth>
+        }
+      />
       <Route path="/:id" element={<RedirectedLink />} />
     </Route>
   )
