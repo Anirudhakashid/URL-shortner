@@ -10,16 +10,19 @@ const UrlProvider = ({ children }) => {
     loading,
     error,
     fn: fetchUser,
+    setData: setUser,
   } = useFetch(getCurrentUser);
 
-  const isAutheticated = user?.role === "authenticated";
+  const isAuthenticated = user?.role === "authenticated";
 
   useEffect(() => {
     fetchUser();
   }, []);
 
   return (
-    <UrlContext.Provider value={{ user, loading, fetchUser, isAutheticated }}>
+    <UrlContext.Provider
+      value={{ user, loading, fetchUser, isAuthenticated, setUser }}
+    >
       {children}
     </UrlContext.Provider>
   );
