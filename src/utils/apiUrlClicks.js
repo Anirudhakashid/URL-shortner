@@ -6,7 +6,7 @@ export async function getClicksFromUrl(urlIds) {
     .select("*")
     .in("url_id", urlIds);
 
-  if (conditions.error) {
+  if (error) {
     console.error(error.message);
     throw new Error("Failed to fetch URL clicks");
   }
