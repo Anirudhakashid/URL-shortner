@@ -74,7 +74,7 @@ function Header() {
           )}
         </div>
       </nav>
-      {loading && <BarLoader className="mb-4" color="#36d7b7" width={"100%"} />}
+      {loading && <BarLoader className="mb-4" color="#293197" width={"100%"} />}
     </>
   );
 }
