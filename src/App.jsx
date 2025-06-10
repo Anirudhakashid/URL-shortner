@@ -16,6 +16,7 @@ import {
 } from "./pages/index";
 import UrlProvider from "./Context";
 import RequireAuth from "./Components/RequireAuth";
+import { Toaster } from "sonner";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -50,6 +51,20 @@ function App() {
     <>
       <UrlProvider>
         <RouterProvider router={router} />
+        <Toaster
+          position="bottom-right"
+          closeButton
+          richColors
+          theme="dark"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: "#171717",
+              border: "1px solid #333",
+              color: "#fff",
+            },
+          }}
+        />
       </UrlProvider>
     </>
   );
