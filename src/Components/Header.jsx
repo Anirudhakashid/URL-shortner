@@ -41,7 +41,9 @@ function Header() {
                     src={user?.user_metadata?.profile_pic}
                     className="object-contain"
                   />
-                  <AvatarFallback>AK</AvatarFallback>
+                  <AvatarFallback>
+                    {user?.user_metadata?.[0] ?? "U"}
+                  </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
