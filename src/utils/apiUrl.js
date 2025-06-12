@@ -50,7 +50,7 @@ export async function createUrl(
         title,
         original_url: longUrl,
         short_url,
-        custom_url: customUrl,
+        custom_url: customUrl || null,
         user_id,
         qr_code: qr,
       },
