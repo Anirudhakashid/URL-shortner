@@ -126,7 +126,7 @@ function CreateLink() {
         {errors?.longUrl && <Error message={errors.longUrl} />}
 
         <div className="flex items-center gap-2">
-          <Card className="px-2 py-1">shrnk.in</Card> /
+          <Card className="px-2 py-1">bitSnip</Card> /
           <Input
             id="customUrl"
             placeholder="Custom Url (optional)"
