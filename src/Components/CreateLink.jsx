@@ -10,7 +10,7 @@ import {
   DialogTrigger,
   DialogClose,
   DialogDescription,
-} from "@/components/ui/dialog";
+} from "@/Components/ui/dialog";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import Error from "./Error";

@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/Components/ui/dropdown-menu";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar";
 import { LinkIcon, LogOut } from "lucide-react";
 import { UrlState } from "@/Context";
 import useFetch from "@/hooks/useFetch";
