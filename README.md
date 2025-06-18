@@ -18,3 +18,7 @@ A full-stack URL shortener built with React, Tailwind CSS, Shadcn UI, and Supaba
 **Backend:** Supabase (Backend-as-a-Service)
 
 **Database:**  Supabase PostgreSQL
+
+## Demo
+
+https://bitsnip.vercel.app/
