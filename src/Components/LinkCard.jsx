@@ -64,7 +64,7 @@ function LinkCard({ url, fetchUrls }) {
         <span className="text-3xl font-extrabold hover:underline cursor-pointer">
           {url?.title}
         </span>
-        <span className="text-2xl text-blue-500 font-bold hover:underline">
+        <span className="text-2xl break-all text-blue-500 font-bold hover:underline">
           {baseUrl}
           {url?.custom_url ? url?.custom_url : url.short_url}
         </span>
