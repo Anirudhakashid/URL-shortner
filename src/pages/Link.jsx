@@ -171,7 +171,6 @@ function Link() {
               Statistics
             </CardTitle>
           </CardHeader>
-          {console.log(stats)}
           {stats && stats?.length ? (
             <CardContent className={"flex flex-col gap-8"}>
               <Card>

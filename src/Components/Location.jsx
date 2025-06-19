@@ -21,8 +21,6 @@ export default function Location({ stats }) {
     return acc;
   }, {});
 
-  console.log(cityCounts);
-
   //* converts the cityCounts object into an array of [key, value] pairs
   const cities = Object.entries(cityCounts).map(([city, count]) => ({
     city,
