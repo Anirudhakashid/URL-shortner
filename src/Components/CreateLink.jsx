@@ -18,7 +18,7 @@ import { Card } from "./ui/card";
 import * as yup from "yup";
 import { QRCode } from "react-qrcode-logo";
 import useFetch from "@/hooks/useFetch";
-import { createUrl } from "@/utils/apiUrl";
+import { createUrl, getCustomUrl } from "@/utils/apiUrl";
 import { BeatLoader } from "react-spinners";
 
 function CreateLink() {
@@ -54,6 +54,7 @@ function CreateLink() {
 
   const {
     loading,
+    setLoading,
     error,
     data,
     fn: fnCreateUrl,
@@ -69,6 +70,20 @@ function CreateLink() {
     setErrors([]);
     try {
       await schema.validate(formValues, { abortEarly: false });
+
+      // ✅ Check if customUrl already exists
+
+      if (formValues.customUrl) {
+        setLoading(true);
+        const exisiting = await getCustomUrl(formValues.customUrl.trim());
+        if (exisiting) {
+          setErrors({
+            customUrl: "Custom URL already exists. Try another one.",
+          });
+          setLoading(false);
+          return; // ✅ STOP execution
+        }
+      }
 
       const canvas = ref.current.canvasRef.current;
       //* converts the image of qr into a binary data format
@@ -135,8 +150,8 @@ function CreateLink() {
           />
         </div>
 
+        {errors?.customUrl && <Error message={errors.customUrl} />}
         {error && <Error message={error} />}
-
         <DialogFooter>
           <DialogClose asChild>
             <Button variant="outline" className={"hover:cursor-pointer"}>
