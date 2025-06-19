@@ -93,3 +93,18 @@ export async function getUrl({ id, user_id }) {
   }
   return data;
 }
+
+export async function getCustomUrl(custom_url) {
+  const { data, error } = await supabase
+    .from("urls")
+    .select("id")
+    .eq("custom_url", custom_url)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error checking custom URL:", error.message);
+    throw new Error("Failed to check custom URL");
+  }
+
+  return data;
+}
