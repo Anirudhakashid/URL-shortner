@@ -82,7 +82,7 @@ function Link() {
 
   let link = "";
   if (url) {
-    link = url?.custom_link ? url?.custom_link : url.short_url;
+    link = url?.custom_url ? url?.custom_url : url.short_url;
   }
 
   return (
