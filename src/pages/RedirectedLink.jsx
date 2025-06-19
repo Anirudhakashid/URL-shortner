@@ -17,13 +17,16 @@ function RedirectedLink() {
 
   useEffect(() => {
     fnLongUrl();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
-    if (!loading && data) {
-      fnStats();
+    if (!loading && data?.original_url) {
+      storeClicks({
+        id: data.id,
+        originalUrl: data.original_url,
+      });
     }
-  }, [loading]);
+  }, [loading, data]);
 
   if (loading || loadingStats) {
     return (
