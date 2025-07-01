@@ -20,6 +20,7 @@ import { QRCode } from "react-qrcode-logo";
 import useFetch from "@/hooks/useFetch";
 import { createUrl, getCustomUrl } from "@/utils/apiUrl";
 import { BeatLoader } from "react-spinners";
+import { checkUrlSafety } from "@/utils/urlSafety";
 
 function CreateLink() {
   const ref = useRef();
@@ -27,8 +28,8 @@ function CreateLink() {
   const navigate = useNavigate();
   const [searchParam, setSearchParam] = useSearchParams();
   const longLink = searchParam.get("createNew");
-
-  const [errors, setErrors] = useState();
+  const [isSafe, setIsSafe] = useState(false);
+  const [errors, setErrors] = useState({});
   const [formValues, setFormValues] = useState({
     title: "",
     longUrl: longLink ? longLink : "",
@@ -71,8 +72,25 @@ function CreateLink() {
     try {
       await schema.validate(formValues, { abortEarly: false });
 
-      // ✅ Check if customUrl already exists
+      // ✅ Step 1: Check if the URL is safe
+      setLoading(true);
+      const safe = await checkUrlSafety(formValues.longUrl);
+      setIsSafe(safe);
+      if (!safe) {
+        setErrors({
+          longUrl:
+            "The URL you entered is flagged as unsafe. Please try another one.",
+        });
+        setLoading(false);
+        setFormValues({
+          title: "",
+          customUrl: "",
+        });
+        return;
+      }
+      setLoading(false);
 
+      // ✅ Step 2: Check if customUrl already exists
       if (formValues.customUrl) {
         setLoading(true);
         const exisiting = await getCustomUrl(formValues.customUrl.trim());
@@ -81,10 +99,14 @@ function CreateLink() {
             customUrl: "Custom URL already exists. Try another one.",
           });
           setLoading(false);
-          return; // ✅ STOP execution
+          setFormValues({
+            customUrl: "",
+          });
+          return; //* STOP execution
         }
       }
 
+      // ✅ Step 3: Proceed with QR + creation
       const canvas = ref.current.canvasRef.current;
       //* converts the image of qr into a binary data format
       const blob = await new Promise((resolve) => canvas.toBlob(resolve));
@@ -120,7 +142,7 @@ function CreateLink() {
           <DialogDescription>
             Enter the details for your new Link
           </DialogDescription>
-          {formValues?.longUrl && (
+          {isSafe && formValues?.longUrl && (
             <QRCode value={formValues?.longUrl} size={250} ref={ref} />
           )}
         </DialogHeader>
@@ -132,12 +154,15 @@ function CreateLink() {
         />
         {errors?.title && <Error message={errors.title} />}
 
+        {/* long url input */}
         <Input
           id="longUrl"
-          placeholder="Enter Yout Looong Url"
+          placeholder="Enter Your Looong Url"
           value={formValues.longUrl}
           onChange={handleInputChange}
+          className={errors?.longUrl ? "border-red-500 focus:ring-red-500" : ""}
         />
+
         {errors?.longUrl && <Error message={errors.longUrl} />}
 
         <div className="flex items-center gap-2">
