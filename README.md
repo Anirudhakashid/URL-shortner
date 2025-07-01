@@ -1,41 +1,38 @@
-# URL Shortener
+# 🔗 BitSnip — Smart URL Shortener
 
-A full-stack URL shortener built with React, Tailwind CSS, Shadcn UI, and Supabase.
+BitSnip is a modern and responsive URL shortener built with React, Vite, Tailwind, and Shadcn UI.  
+It allows users to shorten URLs, generate QR codes, and track analytics — with added security using Google's Safe Browsing API.
 
-## Features
+---
 
-- Paste any URL and get a short link instantly  
-- Responsive UI with React + Tailwind + Shadcn UI  
-- QR Code generation for each shortened URL  
-- Downloadable QR Code image for sharing or printing  
-- View URL insights like total click count, device information etc.  
-- 🚨 Google Safe Browsing check to block malicious or phishing URLs  
+## ✨ Features
 
-## 🔒 URL Safety Check with Google Safe Browsing API
+- 🔗 Paste any URL and get a short link instantly  
+- 📱 Responsive UI built with React + Tailwind + Shadcn UI  
+- 📸 QR Code generation for every shortened URL  
+- 📥 Downloadable QR Code for sharing or printing  
+- 📊 View analytics: total clicks, device type, location, etc.  
+- 🚨 **Google Safe Browsing check to block malicious or phishing URLs**
 
-To enhance user safety, the app integrates Google Safe Browsing API.  
-Before shortening a URL, it is checked against Google's threat database for:
+---
 
-- Malware
-- Social Engineering (Phishing)
-- Unwanted Software
-- Potentially Harmful Applications
+## 🔒 URL Safety with Google Safe Browsing
 
-If a URL is flagged as unsafe, users will receive an error message, and the short link will not be created.
+To protect users and prevent abuse, BitSnip integrates with the [Google Safe Browsing API](https://developers.google.com/safe-browsing).  
+Before shortening any URL, the app checks it against Google’s threat database for:
 
-> This feature is active in both development and production environments.  
-> The Google API key is secured via environment variables and referrer restrictions.
+- Malware  
+- Phishing (Social Engineering)  
+- Unwanted Software  
+- Potentially Harmful Applications  
 
+If a URL is flagged, users will see an error, and the short link will **not be created**.
 
-  
-## Tech Stack
+✅ This feature is active in both development and production.
 
-**Frontend:** React.js, TailwindCSS, Shadcn UI
+---
 
-**Backend:** Supabase (Backend-as-a-Service)
+## 🧪 Test It Yourself
 
-**Database:**  Supabase PostgreSQL
+Try this **dummy malicious URL** (provided by Google for testing): http://malware.testing.google.test/testing/malware/ on the live **App** [https://bitsnip.vercel.app/](https://bitsnip.vercel.app/)
 
-## Demo
-
-https://bitsnip.vercel.app/
